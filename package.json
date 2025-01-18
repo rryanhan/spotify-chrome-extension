@@ -10,14 +10,27 @@
     "clean": "rm extension/content.js extension/content.js.map",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch",
+    "start": "webpack serve --mode development --open"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.20",
     "babel-loader": "^9.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "postcss": "^8.5.1",
+    "postcss-loader": "^8.1.1",
+    "tailwindcss": "^3.4.17",
     "terser-webpack-plugin": "^5.3.7",
-    "webpack": "^5.76.2",
-    "webpack-cli": "^5.0.1"
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.3",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0"
   }
 }

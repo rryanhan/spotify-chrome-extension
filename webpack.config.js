@@ -1,33 +1,43 @@
-const webpack = require('webpack');
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
-
-const config = {
-  entry: './src/index.js',
+module.exports = {
+  mode: 'development',
+  entry: [
+    './src/index.ts',  // Entry point for your TypeScript code
+  ],
   output: {
-    path: path.resolve(__dirname, 'extension'),
-    filename: 'content.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
-  devtool: 'source-map',
+  devServer: {
+    static: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 8080,
+    hot: true,
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
-      }
-    ]
-  },
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          output: { ascii_only: true },
-        },
-      }),
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
     ],
   },
+  resolve: {
+    extensions: ['.ts', '.js', '.css'],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './extension/popup/popup.html',
+      filename: 'popup.html',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
-
-module.exports = config;
