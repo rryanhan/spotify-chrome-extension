@@ -4,12 +4,13 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
-  entry: [
-    './src/index.ts',  // Entry point for your TypeScript code
-  ],
+  entry: {
+    index: './src/index.ts',  // Main entry for your extension
+    background: './src/background.ts',  // Add entry for background script
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',  // This will generate index.js and background.js
   },
   devServer: {
     static: path.join(__dirname, 'dist'),
@@ -35,9 +36,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './extension/popup/popup.html',
-      filename: 'popup.html',
+      template: './src/popup/popup.html',  // Use path.resolve to get absolute path
+      filename: 'popup.html',  // Output as popup.html in dist/
     }),
+    
     new webpack.HotModuleReplacementPlugin(),
   ],
 };

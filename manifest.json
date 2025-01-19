@@ -3,21 +3,26 @@
   "name": "Spotify Extension",
   "version": "1.0",
   "description": "A Spotify Chrome Extension",
-  
+
   "chrome_url_overrides": {
-    "newtab": "extension/popup/popup.html"
+    "newtab": "dist/popup.html"  // Reference to the output HTML
   },
-  
+
   "background": {
-    "service_worker": "extension/background.ts"
+    "service_worker": "dist/background.js"  // Reference to the background script
   },
-  
-  "permissions": ["storage"],
-  
+
+  "permissions": ["storage", "identity"],
+
+  "host_permissions": [
+    "https://api.spotify.com/*"
+  ],
+
   "action": {
-    "default_popup": "extension/popup/popup.html",
+    "default_popup": "dist/popup.html",  // Reference to the popup HTML
     "default_icon": {
-      "16": "extension/icons/icon.png"
+      "16": "src/icons/icon.png"
     }
   }
 }
+
