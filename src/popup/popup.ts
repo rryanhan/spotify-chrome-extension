@@ -1,6 +1,8 @@
-// src/popup/popup.ts
-document.getElementById('search')?.addEventListener('input', (e) => {
-    const searchTerm = (e.target as HTMLInputElement).value;
-    console.log('Search Term:', searchTerm);
-  });
-  
+const loginButton = document.getElementById('loginButton')
+
+if (loginButton) {
+  loginButton.addEventListener("click", () => {
+    console.log('button clicked')
+    window.location.href = "http://localhost:3000/login"
+});
+}

@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     index: './src/index.ts',  // Main entry for your extension
     background: './src/background.ts',  // Add entry for background script
+    popup: './src/popup/popup.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
