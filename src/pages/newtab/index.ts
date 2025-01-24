@@ -1,5 +1,6 @@
-// UI-related logic
-import '../styles/tailwind.css';
+import './styles/tailwind.css';
+
+console.log("hello world!");
 
 const loginButton = document.getElementById('loginButton');
 if (loginButton) {
@@ -7,4 +8,4 @@ if (loginButton) {
     console.log('button clicked');
     chrome.tabs.create({ url: "http://localhost:3000/login" });
   });
-}
+} 

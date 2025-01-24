@@ -1,14 +1,13 @@
 import './styles/tailwind.css';
 
-console.log("hello world!");
+// Background processes, state management, etc.
+console.log("Background service worker started");
+
+// Handle auth state, API calls, etc.
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // Handle messages from popup
+});
 
 
-const loginButton = document.getElementById('loginButton');
-if (loginButton) {
-  loginButton.addEventListener("click", () => {
-    console.log('button clicked');
-    chrome.tabs.create({ url: "http://localhost:3000/login" });
-  });
-}
 
   
