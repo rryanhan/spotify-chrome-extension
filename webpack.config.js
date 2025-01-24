@@ -7,7 +7,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     index: './src/index.ts',        // Background
-    popup: './src/popup/popup.ts'   // UI logic
+    newtab: './src/newtab/newtab.ts'   // UI logic
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -38,8 +38,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/popup/popup.html',
-      filename: 'popup.html',
+      template: './src/newtab/newtab.html',
+      filename: 'newtab.html',
+      chunks: ['newtab']
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
