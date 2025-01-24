@@ -5,21 +5,27 @@
   "description": "A Spotify Chrome Extension",
 
   "chrome_url_overrides": {
-    "newtab": "dist/popup.html"  // Reference to the output HTML
+    "newtab": "dist/popup.html"  
   },
 
   "background": {
-    "service_worker": "dist/background.js"  // Reference to the background script
+    "service_worker": "dist/index.js"  
   },
 
-  "permissions": ["storage", "identity"],
+  "permissions": [
+    "storage", 
+    "identity",
+    "tabs",
+    "http://localhost:3000/*"
+  ],
 
   "host_permissions": [
-    "https://api.spotify.com/*"
+    "https://api.spotify.com/*",
+    "http://localhost:3000/*"
   ],
 
   "action": {
-    "default_popup": "dist/popup.html",  // Reference to the popup HTML
+    "default_popup": "dist/popup.html",  
     "default_icon": {
       "16": "src/icons/icon.png"
     }
