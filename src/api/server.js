@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const querystring = require('querystring');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 app.use(express.json());  // Make sure this is at the top
@@ -9,7 +10,14 @@ const PORT = 3000;
 const client_id = 'e3f6705da6a7449c819fcfadd059a6d8';
 const client_secret = '7eb256c0a33841aaac297416ce64d47c';
 
-// Remove the login endpoint since we're handling that in the extension now
+// Create rate limiter
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,  // 15 minutes
+  max: 100                    // 100 requests per IP
+});
+
+// Apply to all routes
+app.use(limiter);
 
 // Add the exchange endpoint
 app.post('/exchange', async (req, res) => {
