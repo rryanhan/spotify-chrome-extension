@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'sans-serif'], // Add Inter font here
       },
+      colors: {
+        customGreen: '#2EBD59'
+      }
     },
   },
   plugins: [],

@@ -1,6 +1,6 @@
 import '../styles/tailwind.css';
 
-
+// BACKGROUND IMAGE
 // Set default background image if not already set
 const defaultBackgroundImage = 'images/def-backdrop.jpg'; 
 console.log('Using background image:', defaultBackgroundImage);
@@ -26,6 +26,19 @@ chrome.storage.local.get(['backgroundImage'], (result) => {
     document.body.style.height = '100vh';
   });
 
+// CLOCK FUNCTIONALITY
+const updateClock = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timeString = `${hours}:${minutes}`;
+    const clockElement = document.getElementById('clock');
+    if (clockElement) {
+        clockElement.textContent = timeString;
+    }
+};
+setInterval(updateClock, 1000);
+updateClock();
 
 // LOGIN FUNCTIONALITY
 const loginButton = document.getElementById('loginButton');
