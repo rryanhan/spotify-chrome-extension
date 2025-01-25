@@ -1,5 +1,33 @@
 import '../styles/tailwind.css';
 
+
+// Set default background image if not already set
+const defaultBackgroundImage = 'images/def-backdrop.jpg'; 
+console.log('Using background image:', defaultBackgroundImage);
+
+const preloadImage = (src: string) => {
+    const img = new Image();
+    img.src = src;
+};
+preloadImage(defaultBackgroundImage);
+
+chrome.storage.local.get(['backgroundImage'], (result) => {
+  if (!result.backgroundImage) {
+    chrome.storage.local.set({ backgroundImage: defaultBackgroundImage });
+  }
+});
+// Get the background image from storage
+chrome.storage.local.get(['backgroundImage'], (result) => {
+    const backgroundImage = result.backgroundImage || defaultBackgroundImage;
+    document.body.style.backgroundImage = `url(${backgroundImage})`;
+    document.body.style.backgroundSize = 'cover'; 
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundPosition = 'center'; 
+    document.body.style.height = '100vh';
+  });
+
+
+// LOGIN FUNCTIONALITY
 const loginButton = document.getElementById('loginButton');
 if (loginButton) {
     // Add event listener to login button
@@ -47,11 +75,12 @@ if (loginButton) {
 
       // Call server at exchange endpoint to exchange auth code for tokens
       const response = await fetch('http://localhost:3000/exchange', {
+        // Method is POST because data is being sent to the server
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          code,
-          redirect_uri: redirectUrl
+          code, // Auth code received from Spotify
+          redirect_uri: redirectUrl // Redirect URL of the extension
         })
       });
 

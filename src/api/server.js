@@ -21,10 +21,13 @@ app.use(limiter);
 
 // Add the exchange endpoint
 app.post('/exchange', async (req, res) => {
+    // Extract auth code and redirect_uri from request body
   const { code, redirect_uri } = req.body;
-  console.log('Received exchange request:', { code, redirect_uri }); // Add logging
+  console.log('Received exchange request:', { code, redirect_uri });
   
+  // Exchange auth code for tokens
   try {
+    // Send request to Spotify's token endpoint
     const response = await axios({
       method: 'post',
       url: 'https://accounts.spotify.com/api/token',
@@ -34,13 +37,15 @@ app.post('/exchange', async (req, res) => {
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64'),
+        'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64'), // Sends to Spotify's token endpoint to authenticate the request
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
 
-    console.log('Token exchange successful'); // Add logging
-    res.json(response.data);
+    console.log('Token exchange successful'); 
+    
+    // Send back token information to the extension
+    res.json(response.data); 
   } catch (error) {
     console.error('Token exchange failed:', error);
     res.status(500).json({ error: 'Token exchange failed' });
