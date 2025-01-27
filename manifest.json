@@ -26,9 +26,11 @@
   ],
 
   "action": {
-    "default_icon": {
-      "16": "src/assets/icons/icon.png"
-    }
+    "icons": {
+    "16": "assets/icons/productify-logo-16.png",
+    "48": "assets/icons/productify-logo-48.png",
+    "128": "assets/icons/productify-logo-128.png"
+  }
   }
 }
 

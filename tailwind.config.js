@@ -9,9 +9,15 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'sans-serif'], // Add Inter font here
       },
+      fontSize: {
+        '10xl': '10rem',
+        '11xl': '11rem',
+        '12xl': '12rem',
+        '13xl': '13rem',
+      },
       colors: {
         customGreen: '#2EBD59'
-      }
+      },
     },
   },
   plugins: [],
