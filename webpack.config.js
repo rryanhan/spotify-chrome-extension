@@ -45,7 +45,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/images', to: 'images' }, // Copy images to dist
+        { from: 'src/assets', to: 'assets' }, // Copy images to dist
       ],
     }),
 

@@ -1,42 +1,11 @@
 import '../styles/tailwind.css';
+import { setBackgroundImage } from '../components/bgImage';
+import { updateClock } from '../components/clock';
 
 // BACKGROUND IMAGE
-// Set default background image if not already set
-const defaultBackgroundImage = 'images/def-backdrop.jpg'; 
-console.log('Using background image:', defaultBackgroundImage);
-
-const preloadImage = (src: string) => {
-    const img = new Image();
-    img.src = src;
-};
-preloadImage(defaultBackgroundImage);
-
-chrome.storage.local.get(['backgroundImage'], (result) => {
-  if (!result.backgroundImage) {
-    chrome.storage.local.set({ backgroundImage: defaultBackgroundImage });
-  }
-});
-// Get the background image from storage
-chrome.storage.local.get(['backgroundImage'], (result) => {
-    const backgroundImage = result.backgroundImage || defaultBackgroundImage;
-    document.body.style.backgroundImage = `url(${backgroundImage})`;
-    document.body.style.backgroundSize = 'cover'; 
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.backgroundPosition = 'center'; 
-    document.body.style.height = '100vh';
-  });
+setBackgroundImage();
 
 // CLOCK FUNCTIONALITY
-const updateClock = () => {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const timeString = `${hours}:${minutes}`;
-    const clockElement = document.getElementById('clock');
-    if (clockElement) {
-        clockElement.textContent = timeString;
-    }
-};
 setInterval(updateClock, 1000);
 updateClock();
 

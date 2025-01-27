@@ -27,7 +27,7 @@
 
   "action": {
     "default_icon": {
-      "16": "src/icons/icon.png"
+      "16": "src/assets/icons/icon.png"
     }
   }
 }
